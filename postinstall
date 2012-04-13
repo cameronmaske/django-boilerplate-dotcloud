@@ -1,0 +1,3 @@
+#! /bin/sh
+python {{ project_name }}/manage.py collectstatic --noinput
+#python {{ project_name }}/manage.py syncdb --noinput

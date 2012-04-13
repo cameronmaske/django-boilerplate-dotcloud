@@ -1,0 +1,7 @@
+*.pyc
+*.pyo
+.DS_Store
+*~
+config/environments/local.py
+media
+dev-env/**
