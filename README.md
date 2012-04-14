@@ -4,7 +4,7 @@ A barebones default layout taken from [Martin Ogden's work](https://github.com/m
 
 Designed to get up and running quickly. 
 
-Comes with [Bootstrap](http://twitter.github.com/bootstrap/) installed with (FontAwesome)[http://fortawesome.github.com/Font-Awesome/].
+Comes with [Bootstrap](http://twitter.github.com/bootstrap/) installed with [FontAwesome](http://fortawesome.github.com/Font-Awesome/).
 
 ### Usage
 Note: I really recommand installing virtualenv (it makes your life easier).
@@ -31,11 +31,11 @@ Any settings added in `environments/local.py` will be picked up and override any
 ### Useful notes for DotCloud intergration:
 Command to freeze the current requirements of the enviroment and output as a .txt file.
 
-'pip freeze -E dev-env > requirements.txt'
+`pip freeze -E dev-env > requirements.txt`
 
 Likewise, a command to install current requirements to the virtualenv. 
 
-'pip install -E dev-env -r requirements.txt'
+`pip install -E dev-env -r requirements.txt`
 
 ### Credits
 
