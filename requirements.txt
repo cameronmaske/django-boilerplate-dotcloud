@@ -1,0 +1,6 @@
+path.py
+Django
+south
+django-grappelli
+django-extensions
+django_compressor
