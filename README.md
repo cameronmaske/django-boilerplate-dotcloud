@@ -15,8 +15,11 @@ First, make a directory for your project to be, then setup a a virtualenv inside
 	$ virtualenv --python=python2.7 dev-env
 	$ source dev-env/bin/activate 
 	$ pip install Django
-    $ django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud project_name
+    $ django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master project_name
     $ pip install -r requirements.txt
+    $ python manage.py syncdb --noinput
+    $ python manage.py validate --settings=config.environments.development
+    $ python manage.py runserver
 
 ### Settings
 
@@ -35,7 +38,7 @@ Command to freeze the current requirements of the enviroment and output as a .tx
 
 Likewise, a command to install current requirements to the virtualenv. 
 
-`pip install -E dev-env -r requirements.txt`
+`pip install -r requirements.txt`
 
 ### Credits
 
