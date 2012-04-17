@@ -17,7 +17,7 @@ First, make a directory for your project to be, then setup a a virtualenv inside
 	$ pip install Django
     $ django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master project_name
     $ pip install -r requirements.txt
-    $ python manage.py syncdb --noinput
+    $ python manage.py syncdb
     $ python manage.py validate --settings=config.environments.development
     $ python manage.py runserver
 
