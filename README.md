@@ -8,17 +8,18 @@ Comes with [Bootstrap](http://twitter.github.com/bootstrap/) installed with [Fon
 
 ### Usage
 Note: I really recommand installing virtualenv (it makes your life easier).
-First, make a directory for your project to be, then setup a a virtualenv inside (I like the name "dev-env").After that, pip install Django (1.4) and create a template based on this project. After all that, setup all the requirements and BAM, good to go. 
+First, make a directory for your project to be, then setup a a virtualenv inside (I like the name "dev-env"). After that, pip install Django (1.4) and create a template based on this project. After all that, setup all the requirements and BAM, good to go. 
 
 	$ mkdir my-project	
 	$ cd my-project
 	$ virtualenv --python=python2.7 dev-env
 	$ source dev-env/bin/activate 
-	$ pip install Django
+	$ pip install django
     $ django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master project_name
     $ cd project_name
 Next, run install.py to finalize the install! 
 	$ python install.py project_name
+Now sit back, open a cold one, and let install.py handle the rest. 
 
 Then you go! You are up and running. 
 Try going to [127.0.0.1:8000](https://127.0.0.1:8000) to see that everything is working. Happy developing!
@@ -56,6 +57,8 @@ Likewise, a command to install current requirements to the virtualenv.
 ### Credits
 
 Full credits to Martin Ogden for this great boilerplate (originally taken from https://github.com/martinogden) - This is a shameless rip from that repo. 
+
+Adapted by me! Cameron Maske. If this project helped, I've loved to hear about it! Give me a [tweet](https://twitter.com/cameronmaske)
 
 ### TODOs
 * Make the generic template more useful + pretty
