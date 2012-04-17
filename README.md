@@ -17,17 +17,19 @@ First, make a directory for your project to be, then setup a a virtualenv inside
 	$ pip install Django
     $ django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master project_name
     $ cd project_name
-    Note: You need to rename your project's name at this point. Will figure out a better way to do this soon!
+    Next, run install.py to finalize the install! 
+	$ python install.py project_name
+
+### What install.py does
+
+Install.py is meant to act as a shortcut to setting up a few DotCloud specific files, and renaming your project folder and double checking settings. It's not complicated, but save a little bit of time!
+
     $ mv rename_me desired_project_name
     $ pip install -r requirements.txt
     $ cd desired_project_name
     $ python manage.py syncdb
     $ python manage.py validate --settings=config.environments.development
     $ python manage.py runserver
-
-Next, to deploy to Dotcloud, go through postinstall, nginx.conf and change {{ project_name }} to your app's name. 
-Note: This is not elegant. I'll write a script soon to do all this. 
-
 
 ### Settings
 
@@ -54,8 +56,8 @@ Full credits to Martin Ogden for this great boilerplate (originally taken from h
 
 ### TODOs
 * Make the generic template more useful + pretty
-* Write an install script. 
 * Test the project out on DotCloud! 
+* Make install.py more robust. 
 
 
 
