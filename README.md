@@ -58,7 +58,7 @@ Likewise, a command to install current requirements to the virtualenv.
 
 Full credits to Martin Ogden for this great boilerplate (originally taken from https://github.com/martinogden) - This is a shameless rip from that repo. 
 
-Adapted by me! Cameron Maske. If this project helped, I've loved to hear about it! Give me a [tweet](https://twitter.com/cameronmaske)
+Adapted by me! [Cameron Maske](http://www.cameronmaske.com). If this project helped, I've loved to hear about it! Give me a [tweet](https://twitter.com/cameronmaske)
 
 ### TODOs
 * Make the generic template more useful + pretty
