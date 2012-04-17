@@ -17,8 +17,11 @@ First, make a directory for your project to be, then setup a a virtualenv inside
 	$ pip install Django
     $ django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master project_name
     $ cd project_name
-    Next, run install.py to finalize the install! 
+Next, run install.py to finalize the install! 
 	$ python install.py project_name
+
+Then you go! You are up and running. 
+Try going to [127.0.0.1:8000](https://127.0.0.1:8000) to see that everything is working. Happy developing!
 
 ### What install.py does
 
