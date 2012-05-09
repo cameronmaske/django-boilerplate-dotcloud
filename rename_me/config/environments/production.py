@@ -6,11 +6,15 @@ import getpass
 if getpass.getuser() == 'dotcloud': 
     DOTCLOUD = True 
 
+import json
+if DOTCLOUD:
+    with open('/home/dotcloud/environment.json') as f:
+        env = json.load(f)
 
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',    
-            'NAME': 'template0', #Change this. 
+            'NAME': 'template1', #Change this. 
             'USER': env['DOTCLOUD_DB_SQL_LOGIN'],
             'PASSWORD': env['DOTCLOUD_DB_SQL_PASSWORD'],
             'HOST': env['DOTCLOUD_DB_SQL_HOST'],

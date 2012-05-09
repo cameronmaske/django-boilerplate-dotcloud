@@ -19,7 +19,7 @@ if __name__ == '__main__':
 		os.system("chmod +x postinstall")
 		#Create nginx.conf
 		f = open('nginx.conf', 'w')
-		f.write('location /media/ {root /home/dotcloud/current/%s/public/media ;} \nlocation /static/ {root /home/dotcloud/current/%s/public/static; }' % (project_name, project_name))
+		f.write('location /media/ {root /home/dotcloud/current/%s/public; } \nlocation /static/ {root /home/dotcloud/current/%s/public; }' % (project_name, project_name))
 		f.close()
 		os.system("echo Postinstall and nginx.conf created")
 		os.system("python %s/manage.py syncdb" % project_name)

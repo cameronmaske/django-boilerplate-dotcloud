@@ -17,8 +17,8 @@ First, make a directory for your project to be, then setup a a virtualenv inside
 	$ pip install django
     $ django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master project_name
     $ cd project_name
-Next, run install.py to finalize the install! 
-	$ python install.py project_name
+    $ python install.py project_name
+
 Now sit back, open a cold one, and let install.py handle the rest. 
 
 Then you go! You are up and running. 
