@@ -10,7 +10,7 @@ this application via the ``WSGI_APPLICATION`` setting.
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'config.environments.development'
 
-from django.core.wsgi import get_wsgi_application
+import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
 
 import sys

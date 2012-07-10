@@ -11,6 +11,8 @@ if __name__ == '__main__':
 		os.system("mv rename_me " + project_name)
 		os.system("echo Installing requirements...")
 		os.system("pip install -r requirements.txt")
+		os.system("echo Freezing requirements...")
+		os.system("pip freeze > requirements.txt")
 		os.system("echo Setting up postinstall and nginx.conf")
 		#Create postinstall
 		f = open('postinstall', 'w')
