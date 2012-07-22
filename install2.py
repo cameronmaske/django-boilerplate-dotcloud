@@ -38,20 +38,24 @@ def query_yes_no(question):
 			sys.stdout.write("Please respond with 'Y' or 'N'\n")
 
 if __name__ == '__main__':
+	path = os.getcwd()
 	#We get the user to input the desired app name. 
 	print "Let's setup your app! "
-	app_name = raw_input("Enter the app's name: ")
+	app_name = raw_input("Enter the app's name (this will be shared with both DotCloud and Django): ")
 	
 	#Next, we setup the virtualenv. 
-	print "Creating the app directory and virtual enviroment."
+	#Let's deactivate any virtualenv currently set. 
+	os.system("deactivate")
+	print "Creating the app '%s' directory and virtual enviroment." % app_name
 	os.system('virtualenv --python=python2.7 %s' % app_name)
-	print "Activating the virtual enviroment"
-	os.system("cd %s" % app_name)
+	print "Activating the virtual enviroment."
+	os.chdir("%s/%s" % (path,app_name))
 	os.system("source bin/activate")
 
 	#Now we setup Django.
 	print "Installing Django, please hold."
 	os.system("pip install django")
+	#Note: At this point, we should check that the name is valid. https://github.com/django/django/blob/master/django/core/management/commands/startproject.py
 	print "Django has been installed."
 
 	#We create the template project for our django app. 
@@ -62,15 +66,39 @@ if __name__ == '__main__':
 
 	#Let's start the customization. 
 	#Do we include DotCloud support?
-	decision = query_yes_no("Do you want to include DotCloud support?")
+	decision = query_yes_no("\nDo you want to include DotCloud support?")
+	if decision:
+		print "Setting up DotCloud. Creating and chmod'ing postinstall. "
+
+		#Create postinstall.
+		f = open('postinstall', 'w')
+		#Populates it. 
+		f.write('#! /bin/sh \npython ' + app_name + '/manage.py collectstatic --noinput \npython ' + app_name + '/manage.py syncdb --noinput \n')
+		f.close()
+		#Chmod it. 
+		os.system("chmod +x postinstall")
+	#Else, we need to remove dotcloud files
+	else:
+		print "Removing DotCloud specific files."
+		os.system("rm dotcloud.yml")
+		os.system("rm ngnix.conf")
+		os.system("rm postinstall")
+
 	#Do you want to include user support?
-	decision = query_yes_no("Do you want to setup user support?")
+	decision = query_yes_no("\nDo you want to setup user support?")
+	if decision:
+		#replace_line_re("%s/config/settings.py", "#User setup", "userena")
+
 	#Do you want to login with twitter?
-	decision = query_yes_no("Do you want to include Twitter for logging in?")
+	decision = query_yes_no("\nDo you want to include Twitter for logging in?")
+	if decision:
+		#replace_line_re("%s/config/settings.py", "#Twitter login", "allauth")
+
 	#Do you want to include a beta waiting?
-	decision = query_yes_no("Do you want to setup a beta waiting list?")
+	decision = query_yes_no("\nDo you want to setup a beta waiting list?")
+		#replace_line_re("%s/config/settings.py", "#Beta waiting", "waiting")
 
 
 
-	#replace_line_re("example_settings.py", "#Insert App", "#It worked")
+
 
