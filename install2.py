@@ -68,22 +68,23 @@ if __name__ == '__main__':
 	#Let's start the customization. 
 	#Do we include DotCloud support?
 	decision = query_yes_no("\nDo you want to include DotCloud support?")
+
+	#If so, we need to setup postinstall. 
 	if decision:
 		print "Setting up DotCloud. Creating and chmod'ing postinstall. "
 
-		#Create postinstall.
-		f = open('postinstall', 'w')
-		#Populates it. 
-		f.write('#! /bin/sh \npython ' + app_name + '/manage.py collectstatic --noinput \npython ' + app_name + '/manage.py syncdb --noinput \n')
-		f.close()
+		#Updates postinstall.
+		replace_line_re("{{ postinstall }}", "project_name", app_name)
 		#Chmod it. 
 		os.system("chmod +x postinstall")
+
 	#Else, we need to remove dotcloud files
 	else:
 		print "Removing DotCloud specific files."
 		os.system("rm dotcloud.yml")
 		os.system("rm nginx.conf")
 		os.system("rm postinstall")
+		os.system("rm wsgi.py")
 
 	#Do you want to include user support?
 	decision = query_yes_no("\nDo you want to setup user support?")
