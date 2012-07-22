@@ -1,3 +1,4 @@
+# coding: utf-8
 import os, sys, re, fileinput
 
 def replace_line(file, original, new):
@@ -26,7 +27,7 @@ def query_yes_no(question):
 	valid = {"yes": True, "y": True, "Y":True, 
 			"no": False, "n":False, "N": False}
 
-	prompt = "[y/n]"
+	prompt = "[y/n]: "
 
 	while True:
 		sys.stdout.write(question + prompt)
@@ -36,14 +37,11 @@ def query_yes_no(question):
 		else:
 			sys.stdout.write("Please respond with 'Y' or 'N'\n")
 
-
-
 if __name__ == '__main__':
 	#We get the user to input the desired app name. 
 	print "Let's setup your app! "
 	app_name = raw_input("Enter the app's name: ")
 	
-	"""
 	#Next, we setup the virtualenv. 
 	print "Creating the app directory and virtual enviroment."
 	os.system('virtualenv --python=python2.7 %s' % app_name)
@@ -60,9 +58,19 @@ if __name__ == '__main__':
 	print "Creating a new django project boilerplate. Don't worry you can customize it soon enough. "
 	#Runs an uber startproject. Should access all files with the extension tag, and create the project within the current directory. 
 	os.system('django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master %s --extension py,md,conf,yml .' % app_name)
-	"""
+	
 
 	#Let's start the customization. 
-	decision = query_yes_no("Is this a test question?: ")
+	#Do we include DotCloud support?
+	decision = query_yes_no("Do you want to include DotCloud support?")
+	#Do you want to include user support?
+	decision = query_yes_no("Do you want to setup user support?")
+	#Do you want to login with twitter?
+	decision = query_yes_no("Do you want to include Twitter for logging in?")
+	#Do you want to include a beta waiting?
+	decision = query_yes_no("Do you want to setup a beta waiting list?")
+
+
+
 	#replace_line_re("example_settings.py", "#Insert App", "#It worked")
 

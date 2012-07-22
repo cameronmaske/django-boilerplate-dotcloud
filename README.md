@@ -68,8 +68,6 @@ Adapted by me! [Cameron Maske](http://www.cameronmaske.com). If this project hel
 ### Notes:
 Install using: 
 
-curl -s https://raw.github.com/cameronmaske/django-boilerplate-dotcloud/master/install2.py | python
-
-
+curl -o install.py https://raw.github.com/cameronmaske/django-boilerplate-dotcloud/master/install2.py ; python install.py
 
 
