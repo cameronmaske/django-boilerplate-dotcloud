@@ -65,7 +65,10 @@ Adapted by me! [Cameron Maske](http://www.cameronmaske.com). If this project hel
 * Test the project out on DotCloud! 
 * Make install.py more robust. 
 
+### Notes:
+Install using: 
 
+curl -s https://raw.github.com/cameronmaske/django-boilerplate-dotcloud/master/install2.py | python
 
 
 
