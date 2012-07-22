@@ -41,15 +41,16 @@ if __name__ == '__main__':
 	path = os.getcwd()
 	#We get the user to input the desired app name. 
 	print "Let's setup your app! "
-	app_name = raw_input("Enter the app's name (this will be shared with both DotCloud and Django): ")
+	app_name = raw_input("Enter the app's name.\n This will be shared with both DotCloud and Django.\n ")
 	
 	#Next, we setup the virtualenv. 
 	#Let's deactivate any virtualenv currently set. 
-	os.system("deactivate")
+	#os.system("deactivate")
 	print "Creating the app '%s' directory and virtual enviroment." % app_name
 	os.system('virtualenv --python=python2.7 %s' % app_name)
+	print "Changing directory to %s/%s" % (path,app_name)
+	os.chdir("%s/%s/" % (path,app_name))
 	print "Activating the virtual enviroment."
-	os.chdir("%s/%s" % (path,app_name))
 	os.system("source bin/activate")
 
 	#Now we setup Django.
@@ -81,21 +82,25 @@ if __name__ == '__main__':
 	else:
 		print "Removing DotCloud specific files."
 		os.system("rm dotcloud.yml")
-		os.system("rm ngnix.conf")
+		os.system("rm nginx.conf")
 		os.system("rm postinstall")
 
 	#Do you want to include user support?
 	decision = query_yes_no("\nDo you want to setup user support?")
 	if decision:
+		pass
 		#replace_line_re("%s/config/settings.py", "#User setup", "userena")
 
 	#Do you want to login with twitter?
 	decision = query_yes_no("\nDo you want to include Twitter for logging in?")
 	if decision:
+		pass
 		#replace_line_re("%s/config/settings.py", "#Twitter login", "allauth")
 
 	#Do you want to include a beta waiting?
 	decision = query_yes_no("\nDo you want to setup a beta waiting list?")
+	if decision:
+		pass
 		#replace_line_re("%s/config/settings.py", "#Beta waiting", "waiting")
 
 
