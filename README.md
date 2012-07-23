@@ -17,7 +17,10 @@ Simply download and run install.py and follow the various steps in your command 
 Adapted by me! [Cameron Maske](http://www.cameronmaske.com). If this project helped, I've loved to hear about it! Give me a [tweet](https://twitter.com/cameronmaske)
 
 ### TODOs
-* Complete the style guide /style/
+* Complete the style guide /style/.
+* Add optional user code/login support/waiting list to install.
+* Add create development database + sync to install. 
+* Add optional push to DotCloud to install.
 * Tests! 
 
 ### Notes:

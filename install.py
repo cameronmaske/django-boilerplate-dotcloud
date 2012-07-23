@@ -156,7 +156,16 @@ if __name__ == '__main__':
 	)
 	file.close()
 
+	#Now we have to install all the requirements to the virtualenv before we can setup the app in development. 
+ 	print "Install requirements.txts"
+	virtualenv("pip install -r requirements.txt")
+
 	#After the setup of the files, let's run the project. 
+	print "Let's get a database up in here. Sync'in the DB"
+	virtualenv("python %s/manage.py syncdb" % app_name)
+
+	print "Now let's run the server! Happy developing!"
+	virtualenv("python %s/manage.py runserver&" % app_name)
 	# - syncdb
 	# - migrate -all (south)
 	# - validate --settings=config.enviroment
