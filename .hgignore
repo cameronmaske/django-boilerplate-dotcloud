@@ -1,0 +1,12 @@
+syntax: glob
+*.pyc
+*.DS_Store
+*.orig
+*.git
+*.sqlite3
+config/environments/local.py
+media
+bin
+lib
+include
+.Python
