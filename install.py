@@ -24,8 +24,8 @@ def query_yes_no(question):
     The "answer" return value is one of "yes" or "no".
 
 	"""
-	valid = {"yes": True, "y": True, "Y":True, 
-			"no": False, "n":False, "N": False}
+	valid = {"yes": True, "y": True, "Y": True, 
+			"no": False, "n": False, "N": False}
 
 	prompt = "[y/n]: "
 
@@ -42,17 +42,12 @@ def virtualenv(command):
 
 if __name__ == '__main__':
 	path = os.getcwd()
-	#We get the user to input the desired app name. 
-	print "Let's setup your app! "
 	app_name = raw_input("Enter the app's name.\n"
 		"This will be shared with both DotCloud and Django.\n")
 	app_path = "%s/%s" % (path,app_name)
 
-	#A bit of fun. 
 	print "And so it shall be, that %s will be created!" % app_name
-	#Next, we setup the virtualenv. 
 	print "Creating the app '%s' directory and virtual enviroment." % app_name
-	#Is there a way to share agurements when formatting strings?
 	os.system('virtualenv --python=python2.7 %s' % app_name)
 
 	#Creating the enviroment path. 
@@ -62,7 +57,6 @@ if __name__ == '__main__':
 	print "Activating the virtual enviroment."
 	global env_path 
 	env_path = "%s/bin/activate" % app_path
-	#Try to get around bash/other-shell discrepancies.
 	bash = query_yes_no("By the way, are you using bash right now?")
 	global env_activate
 	env_activate = ("." if bash else "source") + " " + env_path
@@ -71,35 +65,32 @@ if __name__ == '__main__':
 	print "Changing directory to %s/%s" % (path,app_name)
 	os.chdir(app_path)
 
-	#Now we setup Django.
 	version = raw_input("What version of Django? [Default 1.4.3]")
 	version = version or "1.4.3"
 	print version
 	print "Installing Django, please hold."
 	virtualenv("pip install django==%s" % version)
-	#Note: At this point, we should check that the name is valid.
-	#https://github.com/django/django/blob/master/django/core/management/commands/startproject.py
 	print "Django has been installed."
 
 	#We create the template project for our django app. 
 	print "Creating a new django project boilerplate. Don't worry you can customize it soon enough. "
-	#Runs an uber startproject. Should access all files with the extension tag, and create the project within the current directory. 
-	virtualenv('django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master %s --extension py,md,conf,yml .' % app_name)
+	#Runs an uber startproject. Should access all files with the extension tag,
+	# and create the project within the current directory. 
+	template_url = "https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master"
+	virtualenv('django-admin.py startproject --template '
+		'%s %s --extension py,md,conf,yml .' % (template_url, app_name))
 
 	#Let's start the customization. 
 	#Do we include DotCloud support?
-	decision = query_yes_no("\nDo you want to include DotCloud support?")
+	dotcloud = query_yes_no("\nDo you want to include DotCloud support?")
 
 	#If so, we need to setup postinstall. 
-	if decision:
+	if dotcloud:
 		print "Setting up DotCloud. Creating and chmod'ing postinstall. "
-
 		#Updates postinstall.
 		replace_line_re("postinstall", "{{ project_name }}", app_name)
 		#Chmod it. 
 		os.system("chmod +x postinstall")
-
-	#Else, we need to remove dotcloud files
 	else:
 		print "Removing DotCloud specific files."
 		os.system("rm dotcloud.yml")
@@ -107,15 +98,10 @@ if __name__ == '__main__':
 		os.system("rm postinstall")
 		os.system("rm wsgi.py")
 
-	#Finishing off the install. 
 	print "Removing redudant files used for install"
-	#Removes redudant files, such as our install script. 
 	os.system("rm install.py")
 	os.system("rm install2.py")
 
-	#Let's create a nice template README.md for the project. 
-	#In the future hopefully this will be more robust, include the project's name and written better. 
-	#For now it will do. 
 	print "Creating a fresh README.md"
 	file = open('README.md', 'w')
 	file.write(
@@ -142,17 +128,11 @@ if __name__ == '__main__':
 	)
 	file.close()
 
-	#Now we have to install all the requirements to the virtualenv before we can setup the app in development. 
  	print "Install requirements.txts"
 	virtualenv("pip install -r requirements.txt")
 
-	#After the setup of the files, let's run the project. 
 	print "Let's get a database up in here. Sync'ing the DB"
 	virtualenv("python %s/manage.py syncdb" % app_name)
 
 	print "Now let's run the server! Happy developing!"
 	virtualenv("python %s/manage.py runserver&" % app_name)
-
-
-
-
