@@ -132,7 +132,7 @@ if __name__ == '__main__':
 	virtualenv("pip install -r requirements.txt")
 
 	print "Let's get a database up in here. Sync'ing the DB"
-	virtualenv("python %s/manage.py syncdb" % app_name)
+	virtualenv("python %s/manage.py syncdb --migrate" % app_name)
 
 	print "Now let's run the server! Happy developing!"
 	virtualenv("python %s/manage.py runserver&" % app_name)
