@@ -85,7 +85,6 @@ if __name__ == '__main__':
 	print "Creating a new django project boilerplate. Don't worry you can customize it soon enough. "
 	#Runs an uber startproject. Should access all files with the extension tag, and create the project within the current directory. 
 	virtualenv('django-admin.py startproject --template https://github.com/cameronmaske/django-boilerplate-dotcloud/zipball/master %s --extension py,md,conf,yml .' % app_name)
-	
 
 	#Let's start the customization. 
 	#Do we include DotCloud support?
@@ -107,25 +106,6 @@ if __name__ == '__main__':
 		os.system("rm nginx.conf")
 		os.system("rm postinstall")
 		os.system("rm wsgi.py")
-
-	#Do you want to include user support?
-	decision = query_yes_no("\nDo you want to setup user support?")
-	if decision:
-		pass
-		#replace_line_re("%s/config/settings.py", "#User setup", "userena")
-
-	#Do you want to login with twitter?
-	decision = query_yes_no("\nDo you want to include Twitter for logging in?")
-	if decision:
-		pass
-		#replace_line_re("%s/config/settings.py", "#Twitter login", "allauth")
-
-	#Do you want to include a beta waiting?
-	decision = query_yes_no("\nDo you want to setup a beta waiting list?")
-	if decision:
-		pass
-		#replace_line_re("%s/config/settings.py", "#Beta waiting", "waiting")
-
 
 	#Finishing off the install. 
 	print "Removing redudant files used for install"
@@ -167,22 +147,11 @@ if __name__ == '__main__':
 	virtualenv("pip install -r requirements.txt")
 
 	#After the setup of the files, let's run the project. 
-	print "Let's get a database up in here. Sync'in the DB"
+	print "Let's get a database up in here. Sync'ing the DB"
 	virtualenv("python %s/manage.py syncdb" % app_name)
 
 	print "Now let's run the server! Happy developing!"
 	virtualenv("python %s/manage.py runserver&" % app_name)
-	# - syncdb
-	# - migrate -all (south)
-	# - validate --settings=config.enviroment
-	# - runserver& (in the background)
-
-	#Finally, give the user the option to push to dotcloud. 
-	decision = query_yes_no("\nDo you want to push the app to DotCloud?")
-	# - create a new dotcloud app. 
-	# - push the app. 
-
-	# Fin! #
 
 
 
