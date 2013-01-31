@@ -44,7 +44,8 @@ if __name__ == '__main__':
 	path = os.getcwd()
 	#We get the user to input the desired app name. 
 	print "Let's setup your app! "
-	app_name = raw_input("Enter the app's name.\nThis will be shared with both DotCloud and Django.\n")
+	app_name = raw_input("Enter the app's name.\n"
+		"This will be shared with both DotCloud and Django.\n")
 	app_path = "%s/%s" % (path,app_name)
 
 	#A bit of fun. 
@@ -58,21 +59,26 @@ if __name__ == '__main__':
 	#Need to create global variables (odd in python huh!).
 	#This is due to os.system creating a sub-shell each time it is called. 
 	#This may not be the ideal solution, but it works for now. 
-	
 	print "Activating the virtual enviroment."
 	global env_path 
 	env_path = "%s/bin/activate" % app_path
-	global env_activate 
-	env_activate = "source %s" % env_path
+	#Try to get around bash/other-shell discrepancies.
+	bash = query_yes_no("By the way, are you using bash right now?")
+	global env_activate
+	env_activate = ("." if bash else "source") + " " + env_path
 
 	#Next, we cd into the project's folder. 
 	print "Changing directory to %s/%s" % (path,app_name)
 	os.chdir(app_path)
 
 	#Now we setup Django.
+	version = raw_input("What version of Django? [Default 1.4.3]")
+	version = version or "1.4.3"
+	print version
 	print "Installing Django, please hold."
-	virtualenv("pip install django")
-	#Note: At this point, we should check that the name is valid. https://github.com/django/django/blob/master/django/core/management/commands/startproject.py
+	virtualenv("pip install django==%s" % version)
+	#Note: At this point, we should check that the name is valid.
+	#https://github.com/django/django/blob/master/django/core/management/commands/startproject.py
 	print "Django has been installed."
 
 	#We create the template project for our django app. 
